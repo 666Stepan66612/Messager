@@ -1,1 +1,2 @@
-This is just the beginning of creating a secure messenger. The first tests of technologies such as RSA and AES256 are underway. There are plans to use gRPC.
+1.This is just the beginning of creating a secure messenger. The first tests of technologies such as RSA and AES256 are underway. There are plans to use gRPC.
+2.Now I'm thinking about ECC (Elliptic Curve Cryptography). ECC VS RSA
