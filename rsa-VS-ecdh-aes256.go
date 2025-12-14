@@ -9,6 +9,7 @@ import (
 	"io"
 	"math/big"
 	"time"
+	"messager/ecdh"
 )
 
 //This is rsa-aes cycle: When a user writes a message, they send a request to another user to generate two RSA keys.
@@ -39,7 +40,7 @@ type privateRSAkey struct {
 }
 
 func (r *rsaEnv) SetRSAEnv() error { // create new rsa env
-	key, err := rsa.GenerateKey(rand.Reader, 2048)
+	key, err := rsa.GenerateKey(rand.Reader, 4096)
 	if err != nil {
 		panic(err)
 	}
@@ -113,6 +114,10 @@ func main() {
 		panic(err)
 	}
 
+	fmt.Println("Using rsa")
 	fmt.Println(string(decrypt))   // Hardest hello world!
-	fmt.Println(time.Since(start)) // ~110 ms
+	fmt.Println(time.Since(start)) // ~400ms - 4sec
+
+	fmt.Println("Using ecdh")
+	ecdh.Ecdh() // very very very fast ~200-900µs sometimes module time write 0s
 }
