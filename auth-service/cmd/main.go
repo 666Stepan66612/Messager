@@ -7,6 +7,7 @@ import (
 	"github.com/go-redis/redis/v8"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"os"
 
 	"messenger/auth-service/internal/handlers"
     "messenger/auth-service/internal/repositories"
@@ -30,7 +31,7 @@ func main(){
 
 	userRepo := repositories.NewUserRepository(db)
 	session := repositories.NewSessionRepository(rdb)
-	authService := service.NewAuthService(userRepo, sessionRepo)
+	authService := services.NewAuthService(userRepo, session)
 	authHandler := handlers.NewAuthHandler(authService)
 
 	r := gin.Default()
